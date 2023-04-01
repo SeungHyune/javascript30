@@ -27,27 +27,19 @@
 
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
-    let some = people.some(data => {
-      let date = new Date();
-      return Math.abs(data.year - date.getFullYear()) >= 19
-    })
-
+    let some = people.some(data => (new Date()).getFullYear() - data.year >= 19 )
     console.log(some)
 
 
     // Array.prototype.every() // is everyone 19 or older?
-    let every = people.every(data => {
-      let date = new Date();
-      return Math.abs(data.year - date.getFullYear()) >= 19
-    })
-
+    let every = people.every(data => (new Date()).getFullYear() - data.year >= 19 )
     console.log(every)
 
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
-    let find = comments.find(memo => {
-      return memo.id === 823423;
+    let find = comments.find(id => {
+      return id.id === 823423;
     })
     console.log(find)
 
