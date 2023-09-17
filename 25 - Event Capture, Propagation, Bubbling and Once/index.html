@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+<style>
+  html {
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  div {
+    width: 100%;
+    padding: 100px;
+  }
+
+  .one {
+    background: thistle;
+  }
+
+  .two {
+    background: mistyrose;
+  }
+
+  .three {
+    background: coral;
+  }
+</style>
+
+<button>버튼</button>
+<script>
+  const divs = document.querySelectorAll('div');
+  const btn = document.querySelector('button');
+
+  function logText(e) {
+    console.log(this.classList.value);
+    e.stopPropagation(); // Bubbling 막기
+  };
+
+  // capture(default)값 : false - 기본적으로 자식에서부터 부모로 버블링이 일어남
+  // capture : ture 값으로 변경 시 부모에서 클릭한 자식까지 역으로 타고 내려옴
+  divs.forEach(div => div.addEventListener('click', logText, {
+    once : true
+  }));
+
+  btn.addEventListener('click', ()=>{
+    console.log('버튼 클릭 !')
+  }, {
+    once : true // once 속성 사용 시 이벤트 한번 밖에 실행 되지 않는다.
+  })
+</script>
+</body>
+</html>
